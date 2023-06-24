@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loading...</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1 id="status">Loading...</h1>
+    <p id="status2">data</p>
+  
+    <script type="text/javascript">
+
+ var data;
+
+  async function fetchJSON() {
+  const response = await fetch("http://127.0.0.1:5000/termino");
+  const asses = await response.json();
+  return await asses;
+  }
+
+
+  async function test() {
+      const ass = await fetchJSON();
+      data = ass;
+      console.log(ass);
+  }
+  test()
+
+
+       
+        
+        $(document).ready(function() {
+            $.get("/termino", function() {
+                if(data.length >= 6){
+                    $("#status").text('Images downloaded successfully!');  // Update with actual image rendering
+                    $("#status2").text(JSON.stringify(data));  // Update with actual image rendering
+
+                  }
+            });
+        });
+    </script>
+</body>
+</html>
